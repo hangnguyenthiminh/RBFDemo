@@ -14,3 +14,6 @@ C:\Users\admin\Downloads\HANG\RBF Network\RBF_DEMO\RBF_DEMO\obj\Debug\RBF_DEMO.c
 C:\Users\admin\Downloads\HANG\RBF Network - SVD\RBF_DEMO\RBF_DEMO\bin\Debug\RBF_DEMO.exe.config
 C:\Users\admin\Downloads\HANG\RBF Network - SVD\RBF_DEMO\RBF_DEMO\obj\Debug\RBF_DEMO.exe
 C:\Users\admin\Downloads\HANG\RBF Network - SVD\RBF_DEMO\RBF_DEMO\obj\Debug\RBF_DEMO.pdb
+C:\Users\admin\Downloads\HANG\RBFDemo\RBF_DEMO\RBF_DEMO\bin\Debug\RBF_DEMO.exe.config
+C:\Users\admin\Downloads\HANG\RBFDemo\RBF_DEMO\RBF_DEMO\obj\Debug\RBF_DEMO.exe
+C:\Users\admin\Downloads\HANG\RBFDemo\RBF_DEMO\RBF_DEMO\obj\Debug\RBF_DEMO.pdb

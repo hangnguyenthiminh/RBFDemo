@@ -327,9 +327,9 @@ namespace RBF_DEMO
             // Iteration over neurons and determine the necessaries
             for (int i = 0; i < length; i++)
             {
-                IRadialBasisFunction basisFunc = network.RBF[i];
+               // IRadialBasisFunction basisFunc = network.RBF[i];
 
-                funcs[i] = basisFunc;
+                //funcs[i] = basisFunc;
 
                 // This is the value that is changed using other training methods.
                 // weights[i] =
