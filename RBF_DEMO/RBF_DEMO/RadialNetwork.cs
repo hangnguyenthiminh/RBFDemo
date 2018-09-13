@@ -1,5 +1,4 @@
-﻿using Encog.MathUtil.RBF;
-using System;
+﻿using System;
 namespace RBF_DEMO
 {
     public class RadialNetwork
@@ -75,6 +74,8 @@ namespace RBF_DEMO
 
         private double MeanSquaredError(double[][] trainData, double[] weights)
         {
+            // 1 ca the la 1 weights
+            // Gio muon tinh fitness minh phai set cai weights nay cho 1 mang RBFNN
             // assumes that centroids and widths have been set!
             this.SetWeights(weights); // copy the weights to valuate in
 
@@ -86,13 +87,19 @@ namespace RBF_DEMO
                 // following assumes data has all x-values first, followed by y-values!
                 Array.Copy(trainData[i], xValues, numInput); // extract inputs
                 Array.Copy(trainData[i], numInput, tValues, 0, numOutput); // extract targets
+                // Sau khi set xong roi chi can goi ham ComputeOutputs de tinh sai so nhu la Em lam voi du lieu Test i  nho khong??
                 double[] yValues = this.ComputeOutputs(xValues); // compute the outputs using centroids, widths, weights, bias values
                 for (int j = 0; j < yValues.Length; ++j)
-                    sumSquaredError += ((yValues[j] - tValues[j]) * (yValues[j] - tValues[j]));
+                    sumSquaredError += ((yValues[j] - tValues[j]) * (yValues[j] - tValues[j]));//tong binh phuong (y-t) (chinh la output - ideal)
             }
-            return sumSquaredError / trainData.Length;
+            return sumSquaredError / trainData.Length; //lay tong error chia trung binh
         }
-
+         // HIEU CHUA H? -> Em cung hieu so so roi a. 
+         //nhung ma gio em lam de tinh weight toi uu nay ben bai timeseries kia dung ko a? viet ham toi uu rieng o bai kia?
+         // hien nhien, sao hoi toan cau ngoc the.-> y thay la tach ham ra khoi thang tinh error cua svd dung ko a, vi no dang dung svd de tinh weight -> sai so
+         // Cai code e dang dung, SVD luc dau no khoi tao ngau nhien cai weight, gio minh ko dung cai khoi tao ngau nhien nua
+         // ma minh phai dung GA de tinh ra cai weght nay, sau do viet ham SETWEIGHT cho cai thang SVD de no tinh sai so -> ok ak
+         // Gio ngoi xem 20 phut cai code nay, de hieu tai sao no dung PSO o day? va cach no tinh sai so the nao?
         // consider MeanCrossEntropy() here as an alternative to MSE
 
         public double Accuracy(double[][] testData)
@@ -159,7 +166,8 @@ namespace RBF_DEMO
 
             for (int k = 0; k < numOutput; ++k)
                 tempResults[k] += oBiases[k]; // add biases
-
+            // O day no dung Softmax thay cho SVD
+            // The nhe, hen 20 phut nua! vang thay
             double[] finalOutputs = Softmax(tempResults); // scale the raw output so values sum to 1.0
 
             //Console.WriteLine("outputs:");
@@ -319,51 +327,22 @@ namespace RBF_DEMO
 
         private double[] DoWeights(double[][] trainData, int maxIterations)
         {
-            double Error;
-            int length = trainData.Length;
-
-            var funcs = new IRadialBasisFunction[length];
-
-            // Iteration over neurons and determine the necessaries
-            for (int i = 0; i < length; i++)
-            {
-               // IRadialBasisFunction basisFunc = network.RBF[i];
-
-                //funcs[i] = basisFunc;
-
-                // This is the value that is changed using other training methods.
-                // weights[i] =
-                // network.Structure.Synapses[0].WeightMatrix.Data[i][j];
-            }
-
-          //  ObjectPair<double[][], double[][]> data = TrainingSetUtil
-          //      .TrainingToArray(Training);
-
-          //  double[][] matrix = EngineArray.AllocateDouble2D(length, network.OutputCount);
-
-          //  FlatToMatrix(network.Flat.Weights, 0, matrix);
-         //   Error = SVD.Svdfit(data.A, data.B, matrix, funcs);
-         //   MatrixToFlat(matrix, network.Flat.Weights, 0);
-
-
-
-
-            return new double[10];
-
-
             // use PSO to find weights and bias values that produce a RBF network
             // that best matches training data
-            /*int numberParticles = trainData.Length / 3;
-
+            int numberParticles = trainData.Length / 3;
+            // Nhin nay, 1 ca the la 1 mang 1 chieu co do dai nhu sau:
             int Dim = (numHidden * numOutput) + numOutput; // dimensions is num weights + num biases
             double minX = -10.0; // implicitly assumes data has been normalizzed
             double maxX = 10.0;
             double minV = minX;
             double maxV = maxX;
+            // PSO no giong GA, 1 ca the cua no la 1 swarm
+            // o day no khai bao 1 swarm la 1 mang 1 chieu so thuc co chieu la DIM
+            // Day la 1 ca the cua GA double[] bestGlobalPosition = new double[Dim]; 
             Particle[] swarm = new Particle[numberParticles];
             double[] bestGlobalPosition = new double[Dim]; // best solution found by any particle in the swarm. implicit initialization to all 0.0
             double smallesttGlobalError = double.MaxValue; // smaller values better
-
+            // Cho nay thi giong GA roi, tien hoa de tim ra ca the tot nhat
             // initialize swarm
             for (int i = 0; i < swarm.Length; ++i) // initialize each Particle in the swarm
             {
@@ -374,7 +353,7 @@ namespace RBF_DEMO
                     double hi = maxX;
                     randomPosition[j] = (hi - lo) * rnd.NextDouble() + lo; // 
                 }
-
+                // Xem cach no danh gia ham fitness MeanSquaredError
                 double err = MeanSquaredError(trainData, randomPosition); // error associated with the random position/solution
                 double[] randomVelocity = new double[Dim];
 
@@ -480,10 +459,8 @@ namespace RBF_DEMO
             } // while (main PSO processing loop)
 
             //Console.WriteLine("\n\nFinal training MSE = " + smallesttGlobalError.ToString("F4") + "\n\n");
-            */
-            // copy best weights found into RBF network, and also return them
 
-            /*
+            // copy best weights found into RBF network, and also return them
             this.SetWeights(bestGlobalPosition);
             double[] returnResult = new double[(numHidden * numOutput) + numOutput];
             Array.Copy(bestGlobalPosition, returnResult, bestGlobalPosition.Length);
@@ -491,8 +468,6 @@ namespace RBF_DEMO
             Console.WriteLine("The best weights and bias values found are:\n");
             Helpers.ShowVector(bestGlobalPosition, 3, 10, true);
             return returnResult;
-            */
-
         } // DoWeights
 
         private static void Shuffle(int[] sequence)
@@ -509,14 +484,18 @@ namespace RBF_DEMO
 
         public double[] Train(double[][] trainData, int maxIterations)
         {
+            // Chu y cho nay:
             Console.WriteLine("\n1. Computing " + numHidden + " centroids");
             DoCentroids(trainData); // find representative data, store their x-values into this.centroids
 
             Console.WriteLine("\n2. Computing a common width for each hidden node");
             DoWidths(this.centroids); // measure of how far apart centroids are
-
-            int numWts = (numHidden * numOutput) + numOutput;// tính tổng weights 
+            // 2 cai trenn minh dang fix co dinh
+            int numWts = (numHidden * numOutput) + numOutput;// tính tổnmaxg weights 
             Console.WriteLine("\n3. Determining " + numWts + " weights and bias values using PSO algorithm");
+            // Gio minh chi toi uu cai Weights nay thoi
+            // Ham nay DoWeights tuong duong voi cai GA cua E
+            // Cai DoWeights nay dang la PSO
             double[] bestWeights = DoWeights(trainData, maxIterations); // use PSO to find weights that best (lowest MSE) weights and biases
 
             return bestWeights;

@@ -102,9 +102,12 @@ namespace RBF_DEMO
 
             Console.WriteLine("\nBeginning RBF training\n");
             int maxIterations = 100; // max for PSO 
-            double[] bestWeights = rn.Train(trainData, maxIterations);
+            double[] bestWeights = rn.Train(trainData, maxIterations); // O DAY 1 Ca The chinh la bo weight nay
+            // Sau khi dung GA se tim ra bestWeights day la ca the co fitness tot nhat
+            // Trong code nay no dung PSO thay cho GA de tim ra ca the tot nhat
 
             Console.WriteLine("\nEvaluating result RBF classification accuracy on the test data");
+            // CHU Y HAM NAY NHE, VI E SE PHAI VIET 1 HAM TUONG TU THE NAY
             rn.SetWeights(bestWeights);
 
             double acc = rn.Accuracy(testData);

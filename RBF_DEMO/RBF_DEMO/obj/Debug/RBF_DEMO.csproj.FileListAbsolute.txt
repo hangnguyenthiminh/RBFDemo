@@ -11,9 +11,9 @@ C:\Users\admin\Downloads\HANG\RBF Network\RBF_DEMO\RBF_DEMO\obj\Debug\RBF_DEMO.p
 C:\Users\admin\Downloads\HANG\RBF Network\RBF_DEMO\RBF_DEMO\bin\Debug\RBF_DEMO.exe
 C:\Users\admin\Downloads\HANG\RBF Network\RBF_DEMO\RBF_DEMO\bin\Debug\RBF_DEMO.pdb
 C:\Users\admin\Downloads\HANG\RBF Network\RBF_DEMO\RBF_DEMO\obj\Debug\RBF_DEMO.csprojResolveAssemblyReference.cache
-C:\Users\admin\Downloads\HANG\RBF Network - SVD\RBF_DEMO\RBF_DEMO\bin\Debug\RBF_DEMO.exe.config
-C:\Users\admin\Downloads\HANG\RBF Network - SVD\RBF_DEMO\RBF_DEMO\obj\Debug\RBF_DEMO.exe
-C:\Users\admin\Downloads\HANG\RBF Network - SVD\RBF_DEMO\RBF_DEMO\obj\Debug\RBF_DEMO.pdb
-C:\Users\admin\Downloads\HANG\RBFDemo\RBF_DEMO\RBF_DEMO\bin\Debug\RBF_DEMO.exe.config
-C:\Users\admin\Downloads\HANG\RBFDemo\RBF_DEMO\RBF_DEMO\obj\Debug\RBF_DEMO.exe
-C:\Users\admin\Downloads\HANG\RBFDemo\RBF_DEMO\RBF_DEMO\obj\Debug\RBF_DEMO.pdb
+D:\HANG\Nghien cuu\RBF Network\RBF_DEMO\RBF_DEMO\bin\Debug\RBF_DEMO.exe.config
+D:\HANG\Nghien cuu\RBF Network\RBF_DEMO\RBF_DEMO\obj\Debug\RBF_DEMO.exe
+D:\HANG\Nghien cuu\RBF Network\RBF_DEMO\RBF_DEMO\obj\Debug\RBF_DEMO.pdb
+D:\HANG\Nghien cuu\RBF Network\RBF_DEMO\RBF_DEMO\bin\Debug\RBF_DEMO.exe
+D:\HANG\Nghien cuu\RBF Network\RBF_DEMO\RBF_DEMO\bin\Debug\RBF_DEMO.pdb
+D:\HANG\Nghien cuu\RBF Network\RBF_DEMO\RBF_DEMO\obj\Debug\RBF_DEMO.csprojResolveAssemblyReference.cache
